@@ -1,51 +1,77 @@
-class WaterBottle {
+// ✅ Interface (Abstraction)
+interface Fillable {
+    void fill(); // abstract by default
+}
+
+// ✅ Base class
+class WaterBottle implements Fillable {
     String color;
     int capacity;
 
-    void fill() {
+    @Override
+    public void fill() {
         System.out.println("Bottle is filled");
     }
 
-    // ✅ Overloading , compile-time polymorphism :same method name but different parameters
+    // ✅ Overloading (compile-time polymorphism)
     void fill(String liquid) {
         System.out.println("Bottle is filled with " + liquid);
     }
 }
 
-// child class
+// ✅ Child class (Inheritance + Overriding)
 class Thermos extends WaterBottle {
 
     void keepHot() {
         System.out.println("Thermos keeps water hot");
     }
 
-    // ✅ Overriding (must be in child class cause Parent already has the method and Child changes it ),runtime: same method, different behavior
+    // ✅ Runtime polymorphism (overriding)
     @Override
-    void fill() {
+    public void fill() {
         System.out.println("Thermos is filled with hot water");
+    }
+}
+
+// ✅ Another class to show abstraction clearly
+class ColdBottle implements Fillable {
+
+    @Override
+    public void fill() {
+        System.out.println("Cold bottle is filled with cold water");
     }
 }
 
 public class Main {
     public static void main(String[] args) {
 
+        // Normal objects
         WaterBottle bottle1 = new WaterBottle();
         Thermos thermos1 = new Thermos();
 
-        thermos1.color = "Red";
         bottle1.color = "Blue";
+        thermos1.color = "Red";
         bottle1.capacity = 1000;
 
-        // ✅ Runtime polymorphism
+        // ✅ Runtime Polymorphism
         WaterBottle obj = new Thermos();
         obj.fill();   // calls Thermos version
 
-        // Normal calls
-        bottle1.fill();                    
-        bottle1.fill("Juice");             // overloading
+        // ✅ Abstraction (interface reference)
+        Fillable f1 = new WaterBottle();
+        Fillable f2 = new Thermos();
+        Fillable f3 = new ColdBottle();
+
+        f1.fill();   // Bottle
+        f2.fill();   // Thermos
+        f3.fill();   // ColdBottle
+
+        // ✅ Normal calls
+        bottle1.fill();
+        bottle1.fill("Juice");   // overloading
 
         thermos1.keepHot();
-        thermos1.fill();                  // overridden
+        thermos1.fill();
 
         System.out.println("Bottle color: " + bottle1.color);
         System.out.println("Thermos color: " + thermos1.color);
