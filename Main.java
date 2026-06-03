@@ -19,7 +19,7 @@ class Thermos extends WaterBottle {
         System.out.println("Thermos keeps water hot");
     }
 
-    // ✅ Overriding (must be in child class),runtime: same method, different behavior
+    // ✅ Overriding (must be in child class cause Parent already has the method and Child changes it ),runtime: same method, different behavior
     @Override
     void fill() {
         System.out.println("Thermos is filled with hot water");
