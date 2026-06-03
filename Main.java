@@ -41,6 +41,35 @@ class ColdBottle implements Fillable {
         System.out.println("Cold bottle is filled with cold water");
     }
 }
+// Encapsulation Class
+class BottleData{
+    private String color;
+    private int capacity;
+
+    //Getter
+    public String getColor() {
+        return color;
+    }
+
+    //Setter
+    public void setColor(String color) {
+        this.color = color;
+    }
+
+    public int getCapacity() {
+        return capacity;
+    }
+    public void setCapacity(int capacity) {
+        
+        if (capacity > 0) {
+            this.capacity = capacity;
+        } else {
+            System.out.println("Invalid capacity!");
+        }
+
+    }
+}
+
 
 public class Main {
     public static void main(String[] args) {
@@ -75,5 +104,23 @@ public class Main {
 
         System.out.println("Bottle color: " + bottle1.color);
         System.out.println("Thermos color: " + thermos1.color);
+
+        
+// ✅ NEW: Using Encapsulation (separate class)
+        BottleData data1 = new BottleData();
+        BottleData data2 = new BottleData();
+
+        data1.setColor("Green");
+        data1.setCapacity(2000);
+
+        data2.setColor("Black");
+        data2.setCapacity(-500); // invalid
+
+        System.out.println("Encapsulated Bottle 1 Color: " + data1.getColor());
+        System.out.println("Encapsulated Bottle 1 Capacity: " + data1.getCapacity());
+
+        System.out.println("Encapsulated Bottle 2 Color: " + data2.getColor());
+        System.out.println("Encapsulated Bottle 2 Capacity: " + data2.getCapacity());
+
     }
 }
