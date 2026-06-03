@@ -6,7 +6,7 @@ class WaterBottle {
         System.out.println("Bottle is filled");
     }
 
-    // ✅ Overloading (allowed)
+    // ✅ Overloading , compile-time polymorphism :same method name but different parameters
     void fill(String liquid) {
         System.out.println("Bottle is filled with " + liquid);
     }
@@ -19,7 +19,7 @@ class Thermos extends WaterBottle {
         System.out.println("Thermos keeps water hot");
     }
 
-    // ✅ Overriding (must be in child class)
+    // ✅ Overriding (must be in child class),runtime: same method, different behavior
     @Override
     void fill() {
         System.out.println("Thermos is filled with hot water");
