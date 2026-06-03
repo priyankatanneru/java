@@ -1,0 +1,64 @@
+✅ 1. Class
+
+A class is a blueprint or template used to create objects.
+It defines properties (variables) and behaviors (methods).
+
+🔹 Example:
+WaterBottle class defines color, capacity, fill()
+
+✅ 2. Object
+
+An object is an instance of a class.
+It represents a real-world entity.
+
+🔹 Example:
+A blue water bottle with 1L capacity is an object of class WaterBottle
+
+✅ 3. Inheritance
+
+Inheritance is the process where one class acquires properties and methods of another class.
+
+Promotes code reuse
+
+🔹 Example:
+Thermos inherits from WaterBottle
+
+✅ 4. Polymorphism
+
+Polymorphism means one method behaves differently in different situations.
+
+Types:
+
+Compile-time (Overloading): Compile-time polymorphism is achieved when multiple methods have the same name but different parameters (number, type, or order).
+
+Runtime (Overriding): Runtime polymorphism is when a child class provides a different implementation of a method defined in the parent class.
+
+🔹 Example:
+fill() works differently for normal bottle and thermos
+
+✅ 5. Abstraction
+
+Abstraction means hiding internal details and showing only essential features.
+
+Achieved using abstract classes or interfaces
+
+🔹 Example:
+User only uses fill() without knowing internal working
+
+✅ 6. Encapsulation
+
+Encapsulation is wrapping data and methods together and restricting direct access to data.
+
+Achieved using private variables + getters/setters
+
+🔹 Example:
+Capacity is accessed using setCapacity() and getCapacity()
+
+✅ Short Summary (1-line each)
+
+Class → Blueprint
+Object → Instance of class
+Inheritance → Acquiring properties from parent
+Polymorphism → Same method, different behavior
+Abstraction → Hide details, show only essentials
+Encapsulation → Protect data using methods
