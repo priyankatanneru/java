@@ -5,26 +5,48 @@ class WaterBottle {
     void fill() {
         System.out.println("Bottle is filled");
     }
-}
-//child class
 
+    // ✅ Overloading (allowed)
+    void fill(String liquid) {
+        System.out.println("Bottle is filled with " + liquid);
+    }
+}
+
+// child class
 class Thermos extends WaterBottle {
+
     void keepHot() {
         System.out.println("Thermos keeps water hot");
+    }
+
+    // ✅ Overriding (must be in child class)
+    @Override
+    void fill() {
+        System.out.println("Thermos is filled with hot water");
     }
 }
 
 public class Main {
     public static void main(String[] args) {
-        WaterBottle bottle1 = new WaterBottle(); // Object
-        Thermos thermos1 = new Thermos(); // Object
+
+        WaterBottle bottle1 = new WaterBottle();
+        Thermos thermos1 = new Thermos();
+
         thermos1.color = "Red";
         bottle1.color = "Blue";
         bottle1.capacity = 1000;
 
-        bottle1.fill(); //inherited method
-        thermos1.keepHot(); // own method
-        thermos1.fill(); // inherited method
+        // ✅ Runtime polymorphism
+        WaterBottle obj = new Thermos();
+        obj.fill();   // calls Thermos version
+
+        // Normal calls
+        bottle1.fill();                    
+        bottle1.fill("Juice");             // overloading
+
+        thermos1.keepHot();
+        thermos1.fill();                  // overridden
+
         System.out.println("Bottle color: " + bottle1.color);
         System.out.println("Thermos color: " + thermos1.color);
     }
