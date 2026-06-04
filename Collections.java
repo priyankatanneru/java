@@ -1,4 +1,7 @@
 import java.util.*;
+
+import java.io.FileWriter;
+
 class Collections{
     public static void main(String[] args){
 
@@ -36,5 +39,41 @@ class Collections{
         linkedList.set(1, "Everyone"); // Updating an element in the LinkedList
         linkedList.add(1, "Priya"); // Adding an element at a specific index in the LinkedList
         System.out.println("LinkedList: " + linkedList);
+
+        // TreeSet : A Set that stores unique elements in a sorted order.
+        TreeSet<String> treeSet = new TreeSet<>();
+        treeSet.add("Banana");
+        treeSet.add("Apple");
+        treeSet.add("Cherry");
+        treeSet.add("Apple"); // TreeSet does not allow duplicates
+        System.out.println("TreeSet: " + treeSet);
+
+        //Error handling with Collections
+        try{
+            list.get(10); // This will throw an IndexOutOfBoundsException
+        } catch (IndexOutOfBoundsException e) {
+            System.out.println("Caught an exception: " + e.getMessage());
+        }
+
+        // Iterating over a collection using an enhanced for loop
+        System.out.println("Iterating over ArrayList:");
+        for (String item : list) {
+            System.out.println(item);
+        }
+
+    // File handling
+        
+    try {
+        Scanner scanner = new Scanner(System.in);
+        System.out.print("Enter the file name: ");
+        String fileName = scanner.nextLine();
+        FileWriter writer = new FileWriter(fileName);
+        writer.write("Bottle color: Blue\nCapacity: 1000ml");
+        writer.close();
+        System.out.println("Data written to file");
+    } catch (Exception e) {
+        System.out.println("Error occurred");
+    }
+
     }
 }

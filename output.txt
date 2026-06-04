@@ -1,0 +1,2 @@
+Bottle color: Blue
+Capacity: 1000ml
