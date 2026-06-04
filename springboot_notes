@@ -1,0 +1,288 @@
+1. Standard Project Structure
+👉 Every Spring Boot project follows this:
+Name_of_project/
+│
+├── controller/
+│     └── UserController.java
+│
+├── service/
+│     └── UserService.java
+│
+├── repository/
+│     └── UserRepository.java
+│
+├── model/
+│     └── User.java
+│
+├── BottleappApplication.java
+│
+└── test/
+      └── BottleappApplicationTests.java
+
+✅ Flow of Application
+Client → Controller → Service → Repository → Data
+
+1. Model (Data Class)
+📁 model/User.java
+
+package com.example.bottleapp.model;
+
+public class User {
+
+    private int id;
+    private String name;
+
+    public User(int id, String name) {
+        this.id = id;
+        this.name = name;
+    }
+
+    public int getId() { return id; }
+    public String getName() { return name; }
+
+    public void setId(int id) { this.id = id; }
+    public void setName(String name) { this.name = name; }
+}
+
+Why Model?
+👉 Represents data structure
+👉 Used in API input/output
+
+🔹 2. Repository (Data Layer)
+📁 repository/UserRepository.java
+package com.example.bottleapp.repository;
+
+import org.springframework.stereotype.Repository;
+import com.example.bottleapp.model.User;
+import java.util.*;
+
+@Repository
+public class UserRepository {
+
+    private List<User> users = new ArrayList<>();
+
+    public List<User> findAll() {
+        return users;
+    }
+
+    public String save(User user) {
+        users.add(user);
+        return "User saved";
+    }
+}
+
+✅ Why @Repository?
+✔ Handles data
+✔ In real apps → connects to DB
+
+3. Service (Business Logic)
+📁 service/UserService.java
+
+package com.example.bottleapp.service;
+
+import org.springframework.stereotype.Service;
+import org.springframework.beans.factory.annotation.Autowired;
+import com.example.bottleapp.repository.UserRepository;
+import com.example.bottleapp.model.User;
+import java.util.*;
+
+@Service
+public class UserService {
+
+    @Autowired
+    private UserRepository repository;
+
+    public List<User> getUsers() {
+        return repository.findAll();
+    }
+
+    public String createUser(User user) {
+        return repository.save(user);
+    }
+
+    public String updateUser(int id) {
+        return "User updated: " + id;
+    }
+
+    public String deleteUser(int id) {
+        return "User deleted: " + id;
+    }
+}
+
+✅ Why @Service?
+✔ Contains logic
+✔ Keeps controller simple
+
+✅ Why @Autowired?
+👉 Spring automatically injects object
+❌ No need:
+new UserRepository();
+
+✅ This is Dependency Injection
+
+🔹 4. Controller (API Layer)
+📁 controller/UserController.java
+
+package com.example.bottleapp.controller;
+
+import org.springframework.webapp.service.UserService;import org.springframework.web.bind.annotation.*;
+import com.example.bottleapp.model.User;
+import java.util.*;
+
+@RestController
+@RequestMapping("/users")
+public class UserController {
+
+    @Autowired
+    private UserService service;
+
+    @GetMapping
+    public List<User> getUsers() {
+        return service.getUsers();
+    }
+
+    @PostMapping
+    public String createUser(@RequestBody User user) {
+        return service.createUser(user);
+    }
+
+    @PutMapping("/{id}")
+    public String updateUser(@PathVariable int id) {
+        return service.updateUser(id);
+    }
+
+    @DeleteMapping("/{id}")
+    public String deleteUser(@PathVariable int id) {
+        return service.deleteUser(id);
+    }
+}
+``
+import org.springframework.beans.factory.annotation.Autowired;
+
+
+4. How It Works (Flow)
+
+Example:
+👉 Request:
+GET /users
+
+
+Flow:
+Controller → Service → Repository → Data
+
+
+
+Controller receives request
+Calls service
+Service calls repository
+Data returned
+
+✅ 5. Your Test Class Explained
+📁 BottleappApplicationTests.java
+@SpringBootTest
+class    @Testclass BottleappApplicationTests {
+    void contextLoads() {
+    }
+}
+``
+✅ @SpringBootTest
+👉 Loads entire Spring Boot application
+✔ Checks:
+
+Beans created ✅
+Config correct ✅
+
+
+✅ @Test
+👉 Marks method as test case
+
+✅ What contextLoads() does
+👉 Verifies:
+Application starts without errors ✅
+
+✅ Why testing is used?
+✔ Ensures app works
+✔ Finds configuration issues
+✔ Required in real projects
+
+🌟 ✅ 6. Example API Calls
+
+👉 GET
+GET /users
+
+
+👉 POST
+POST /users
+Body:
+{
+  "id": 1,
+  "name": "Priyanka"
+}
+
+
+👉 PUT
+PUT /users/1
+
+
+👉 DELETE
+DELETE /users/1
+
+
+🎯 ✅ Final Understanding
+
+✅ Architecture
+Controller → Service → Repository
+
+
+✅ Responsibility
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+LayerPurposeControllerhandle APIServicelogicRepositorydata
+
+✅ Key Concept
+👉 Spring manages:
+
+object creation ✅
+dependency injection ✅
+request mapping ✅
+
+
+💡 Simple Analogy
+👉 Controller = Reception
+👉 Service = Manager
+👉 Repository = Storage
+
+🚀 ✅ Next Step for You
+Now you should:
+✅ Run project using:
+./mvnw spring-boot:run
+
+✅ Test APIs in Postman
+✅ Add real logic (list, update, delete)
+
+👍 You Completed Important Step
+You now understand:
+✅ Spring Boot structure
+✅ REST APIs
+✅ Dependency Injection
+✅ Annotations
+✅ Testing
