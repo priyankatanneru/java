@@ -1,0 +1,7 @@
+POST https://fuzzy-space-telegram-69w649pgj5w5frq6w-8080.app.github.dev/api/bottle
+Content-Type: application/json
+
+{
+  "name": "Red Bottle",
+  "capacity": 500
+}
