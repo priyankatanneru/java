@@ -25,5 +25,16 @@ class Collections{
         map.put("One", 11); // HashMap does not allow duplicate keys, it will overwrite the value for key "One"
 
         System.out.println("HashMap: " + map);
+
+        // LinkedList : A List that allows for efficient insertion and deletion of elements.
+        LinkedList<String> linkedList = new LinkedList<>();
+        linkedList.add("Hello");
+        linkedList.add("World");
+        linkedList.addFirst("First"); // Adding an element at the beginning of the LinkedList
+        linkedList.addLast("Last"); // Adding an element at the end of the LinkedList
+        linkedList.remove("World"); // Removing an element from the LinkedList
+        linkedList.set(1, "Everyone"); // Updating an element in the LinkedList
+        linkedList.add(1, "Priya"); // Adding an element at a specific index in the LinkedList
+        System.out.println("LinkedList: " + linkedList);
     }
 }
