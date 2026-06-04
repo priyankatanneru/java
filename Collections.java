@@ -5,11 +5,26 @@ import java.io.FileWriter;
 class Collections{
     public static void main(String[] args){
 
-        // ArrayList : A List stores ordered elements and allows duplicates.
+        // Stream Api : A Stream is a sequence of elements that can be processed in parallel or sequentially. It provides a functional programming approach to processing collections of data.
+        List<String> names = Arrays.asList("Alice", "Bob", "Charlie","Alia");
+        names.stream()
+             .filter( n -> n.startsWith("A"))
+             .map(n -> n.toUpperCase())
+             .forEach(System.out::println);
+
+
+               // ArrayList : A List stores ordered elements and allows duplicates.
         ArrayList<String> list = new ArrayList<>();
         list.add("Hello");
         list.add("World");
         list.add("Hello"); // ArrayList allows duplicates
+        //for (String item : list) {  // normalway without lamba
+         //   System.out.println(item);
+        //}
+
+        // lamba way
+        list.forEach(item -> System.out.println(item));
+
 
         System.out.println("ArrayList: " + list);
 
@@ -70,6 +85,18 @@ class Collections{
         FileWriter writer = new FileWriter(fileName);
         writer.write("Bottle color: Blue\nCapacity: 1000ml");
         writer.close();
+        
+    // Reading from file
+        Scanner reader = new Scanner(new java.io.File(fileName));
+        System.out.println("\nReading data from file:");
+
+        while (reader.hasNextLine()) {
+            String line = reader.nextLine();
+            System.out.println(line);
+        }
+
+        reader.close();
+
         System.out.println("Data written to file");
     } catch (Exception e) {
         System.out.println("Error occurred");
